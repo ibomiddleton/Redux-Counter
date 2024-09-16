@@ -3,6 +3,12 @@ import { connect } from 'react-redux';
 import { increment, decrement } from '../actions';
 
 class Counter extends Component {
+    constructor(){
+        super();
+        this.state={
+            count:0
+        }
+    }
     incrementIfOdd = () => {
         // Stretch Problem: Implement an increment function that
         // only increments if the counter value is odd
@@ -12,18 +18,35 @@ class Counter extends Component {
         // Stretch Problem: Implement an increment function that
         // increments after waiting for one second
     };
-
+    increment(){
+        console.log("increment");
+        if(this.state.count === 10) {
+            return false
+        } else {
+            this.setState({ count: this.state.count + 1 })
+        }
+    }
+    decrement(){
+        console.log("decrement");
+        if(this.state.count === 0) {
+            return false
+        } else {
+            this.setState({ count: this.state.count - 1 })
+        }
+    }
     render() {
         // Fill in the two button onClick methods
         // Upon clicking these buttons, the count
         // should decrement or increment accordingly
         return (
-            <p>
-                Clicked: {this.props.count} times
-                <button onClick={() => {/* Fill me in */ }}>
+            <p style={{fontSize:"50px"}}>
+                Clicked: {this.state.count} times
+                {" "}
+                <button style={{backgroundColor:"lightgrey", color:"dodgerblue"}} onClick={() => this.increment()}>
                     +
                 </button>
-                <button onClick={() => {/* Fill me in */ }}>
+                {" "}
+                <button style={{backgroundColor:"lightgrey", color:"dodgerblue"}} onClick={() => this.decrement()}>
                     -
                 </button>
                  {/* Uncomment these button tags if you got
